@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<section class="section">
+            <div class="container">
+                 <h2 align="center">Вход</h2>
+               <div class="centered-form">
+              <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Войти</button>
+              </form>
+            </div>
+                        </div>
+        </section>
+{% endblock  %}
+

@@ -1,0 +1,48 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<section class="section">
+            <div class="container">
+                <div id="w-node-_65e66a04-8c33-02b6-9ea1-25e83edbce95-05cad635" class="w-layout-layout hero-header-component wf-layout-layout">
+                    <div id="w-node-_65e66a04-8c33-02b6-9ea1-25e83edbce96-05cad635" class="w-layout-cell">
+                        <div class="portfolio-header-image-wrapper">
+                            <img src="{{ MEDIA_URL }} {{obj.image.url }}" loading="lazy" alt="{{ obj.title }}"  class="hero-header-image"/>
+                        </div>
+                    </div>
+                    <div id="w-node-_65e66a04-8c33-02b6-9ea1-25e83edbce9e-05cad635" class="w-layout-cell">
+                        <div class="hero-content">
+                            <div class="hero-heading-container">
+                                <h2 class="text-color-brand">{{obj.title }}</h2>
+                            </div>
+                            <div class="hero-paragraph-container">
+                                <div class="paragraph-large text-color-brand">{{ obj.description }}</div>
+                            </div>
+                            <a href="{{obj.url}}" data-w-id="539f0525-a300-a16b-b932-c6a13434a7ed" class="button-primary invert w-inline-block">
+                                <img src="{% static 'images/github-mark.svg' %}" alt="" class="github">
+                                <div>GitHub</div>
+                                <div class="icons-font">arrow_forward</div>
+                            </a>
+                            <div class="project-status text-color-brand">Статус: {{ obj.get_status_display }}</div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+               <h3 class="comment">Комментарии</h3>
+{% for comment in comments %}
+  <div class="comments">
+    <p><strong>{{ comment.user }}</strong> {{comment.created}}</p>
+    <p>{{ comment.text }}</p>
+  </div>
+                <hr>
+{% endfor %}
+
+<h4 class="comment" >Добавить комментарий</h4>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Опубликовать">
+</form>
+            </div>
+        </section>
+
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+ <section class="section">
+            <div class="container">
+                <div id="w-node-_65e66a04-8c33-02b6-9ea1-25e83edbce95-05cad635" class="w-layout-layout hero-header-component wf-layout-layout">
+                    <div id="w-node-_65e66a04-8c33-02b6-9ea1-25e83edbce96-05cad635" class="w-layout-cell">
+                        <div class="portfolio-header-image-wrapper">
+                            <img src="{% static 'images/main.jpg' %}" loading="lazy" alt="" class="hero-header-image"/>
+                        </div>
+                    </div>
+                    <div id="w-node-_65e66a04-8c33-02b6-9ea1-25e83edbce9e-05cad635" class="w-layout-cell">
+                        <div class="hero-content">
+                            <div class="hero-heading-container">
+                                <h2 class="text-color-brand">BoroCompany</h2>
+                            </div>
+                            <div class="hero-paragraph-container">
+                                <div class="paragraph-large text-color-brand">Одноименная компания по создаю различных веб-страниц на просторах сети Интернет.</div>
+                            </div>
+                            <a href="#portfolio-label-title" data-w-id="539f0525-a300-a16b-b932-c6a13434a7ed" class="button-primary invert w-inline-block">
+                                <div>Посмотреть проекты</div>
+                                <div class="icons-font">arrow_forward</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section">
+            <div class="container">
+                <div class="portfolio-label-title" id="portfolio-label-title1">
+                    <h2>Что делает BoroCompany</h2>
+                </div>
+                <div id="w-node-f2bd0536-22df-6409-b9c9-5fa7319d255d-05cad635" class="w-layout-layout features-stack wf-layout-layout">
+                    <div id="w-node-f2bd0536-22df-6409-b9c9-5fa7319d255e-05cad635" class="w-layout-cell">
+                        <div class="w-layout-vflex card">
+                            <div class="features-item-text-wrapper">
+                                <h3>UI/UX Дизайн</h3>
+                                <p>Уделяется приоритетное внимание пользовательскому опыту, следя за тем, чтобы каждое взаимодействие было интуитивно понятным, плавным и приятным.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="w-node-f2bd0536-22df-6409-b9c9-5fa7319d2567-05cad635" class="w-layout-cell">
+                        <div class="w-layout-vflex card">
+                            <div class="features-item-text-wrapper">
+                                <h3>Web-дизайн</h3>
+                                <p>От концепции до запуска BoroCompany создает визуально привлекательные и удобные для пользователя веб-сайты, соответствующие индивидуальности вашего бренда.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+            <section class="section">
+                <div class="container">
+                    <div class="portfolio-label-title" id="portfolio-label-title">
+                        <h2>Проекты</h2>
+                    </div>
+                    {% if user.is_authenticated %}
+                    <p>Профиль: {{ user.username }}</p>
+                    <p><a href="{% url 'logout' %}">ВЫЙТИ</a></p>
+                    {% for item in projects %}
+                    <div id="w-node-_65e66a04-8c33-02b6-9ea1-25e83edbcea8-05cad635" class="w-layout-layout portfolio-stack wf-layout-layout">
+                        <div id="w-node-_65e66a04-8c33-02b6-9ea1-25e83edbcea9-05cad635" class="w-layout-cell">
+                            <div class="case-study-image-wrapper">
+                                <img src="{{ MEDIA_URL }} {{item.image.url }}" loading="lazy" alt="{{ item.title }}" class="cast-study-image"/>
+                            </div>
+                        </div>
+                        <div id="w-node-_65e66a04-8c33-02b6-9ea1-25e83edbceab-05cad635" class="w-layout-cell">
+                            <div>
+                                <h3 class="heading">{{ item.title }}</h3>
+<!--                                <p class="paragraph-large">{{ item.description }}</p>-->
+                                <a href="{{item.id}}" data-w-id="d7a233c3-ffed-3af5-51b2-18ad9a717744" class="button-primary full-width w-inline-block">
+                                    <div>Подробнее</div>
+                                    <div class="icons-font">arrow_forward</div>
+                                </a>
+                            </div>
+                </div>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <p>Войдите или зарегистрируйтесь для просмотра проектов.</p>
+                    <a href="{% url 'login' %}">ВОЙТИ</a>
+                    <a href="{% url 'signup' %}">Зарегистрироваться</a>
+                    {% endif %}
+                    </div>
+
+            </section>
+{% endblock %}
